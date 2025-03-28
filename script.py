@@ -222,7 +222,7 @@ def main():
         total_coverage = len(completed_classes) + len(coverage_results)
         total_mutation = len(completed_classes) + len(mutation_results)
         
-        print(f"\done analyzing")
+        print(f"\n done analyzing")
         print(f"total coverage results: {total_coverage} classes with valid results.")
         print(f"total mutation results: {total_mutation} classes with valid results.")
         print("all results saved in coverage_results/condition_coverage.csv and mutation_results/mutation_scores.csv")
