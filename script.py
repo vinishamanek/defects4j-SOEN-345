@@ -149,7 +149,7 @@ def get_completed_classes():
     # return the intersection of both sets (classes that completed both tests)
     # this ensures we only skip classes that have completed both coverage and mutation tests
     completed = coverage_classes.intersection(mutation_classes)
-    print(f"Found {len(completed)} classes already processed")
+    print(f"found {len(completed)} classes already processed")
     return completed
 
 def ensure_csv_headers():
