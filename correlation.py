@@ -4,21 +4,21 @@ from scipy.stats import pearsonr
 import matplotlib.pyplot as plt
 
 def analyze_project(project_folder):
-    """Calculate correlation between mutation score and condition coverage for a project."""
+    """Calculate correlation between mutation score and branch coverage for a project."""
     project_name = os.path.basename(project_folder)
     
     mutation_file = os.path.join(project_folder, "mutation.csv")
-    condition_file = os.path.join(project_folder, "condition.csv")
+    branch_file = os.path.join(project_folder, "branch.csv")
     
     mutation_df = pd.read_csv(mutation_file)
-    condition_df = pd.read_csv(condition_file)
+    branch_df = pd.read_csv(branch_file)
     
-    merged_df = pd.merge(mutation_df, condition_df, on="ClassName", how="inner")
+    merged_df = pd.merge(mutation_df, branch_df, on="ClassName", how="inner")
     
     mutation_scores = merged_df["MutationScore"]
-    condition_coverage = merged_df["ConditionCoverage"]
+    branch_coverage = merged_df["ConditionCoverage"]
     
-    correlation, p_value = pearsonr(mutation_scores, condition_coverage)
+    correlation, p_value = pearsonr(mutation_scores, branch_coverage)
     
     print(f"Results for {project_name}:")
     print(f"  Number of classes: {len(merged_df)}")
@@ -26,8 +26,8 @@ def analyze_project(project_folder):
     print(f"  P-value: {p_value:.4f}")
     
     plt.figure(figsize=(8, 6))
-    plt.scatter(condition_coverage, mutation_scores)
-    plt.xlabel("Condition Coverage (%)")
+    plt.scatter(branch_coverage, mutation_scores)
+    plt.xlabel("Branch Coverage (%)")
     plt.ylabel("Mutation Score (%)")
     plt.title(f"{project_name}: Correlation = {correlation:.4f}")
     plt.grid(True, alpha=0.3)
@@ -42,7 +42,7 @@ def analyze_all_projects(root_folder):
     project_folders = [
         os.path.join(root_folder, folder) 
         for folder in os.listdir(root_folder) 
-        if os.path.isdir(os.path.join(root_folder, folder))
+        if os.path.isdir(os.path.join(root_folder, folder)) and not folder.startswith('.')
     ]
     
     for folder in project_folders:
