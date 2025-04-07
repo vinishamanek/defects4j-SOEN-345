@@ -1,0 +1,28 @@
+Results for closure:
+  Number of classes: 88
+  Correlation: 0.6016
+  P-value: 0.0000
+
+
+Results for compress:
+  Number of classes: 22
+  Correlation: 0.6328
+  P-value: 0.0016
+
+
+Results for jacksondatabind:
+  Number of classes: 121
+  Correlation: 0.2109
+  P-value: 0.0202
+
+
+Results for math:
+  Number of classes: 119
+  Correlation: 0.5191
+  P-value: 0.0000
+
+  
+Results for mockito:
+  Number of classes: 37
+  Correlation: 0.5918
+  P-value: 0.0001
